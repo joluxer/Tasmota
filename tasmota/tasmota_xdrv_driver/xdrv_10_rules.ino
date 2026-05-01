@@ -933,6 +933,17 @@ void RulesInit(void)
     }
   }
   Rules.teleperiod = false;
+
+#ifdef USE_UNISHOX_COMPRESSION
+  // Pre-populate k_rules[] cache here (FUNC_PRE_INIT), before WiFi/MQTT/WebServer
+  // allocate heap, so the persistent cache lands at low heap addresses instead of
+  // fragmenting the middle of the heap when first rule evaluation occurs later.
+  if (!Settings->flag4.compress_rules_cpu) {
+    for (uint32_t i = 0; i < MAX_RULE_SETS; i++) {
+      if (GetRuleLen(i) > 0) { GetRule(i); }
+    }
+  }
+#endif
 }
 
 void RulesEvery50ms(void)
