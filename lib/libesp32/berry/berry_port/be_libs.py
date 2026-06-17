@@ -525,11 +525,20 @@ def _debug_m_caller(vm):
     be_obj = _lazy_be_object()
     be_vec = _lazy_be_vector()
     depth = 1
-    if be_api.be_top(vm) >= 1 and be_api.be_isint(vm, 1):
-        depth = be_api.be_toint(vm, 1)
-        if depth < 0:
-            depth = -depth
     count = be_vec.be_stack_count(vm.callstack)
+    if be_api.be_top(vm) >= 1 and be_api.be_isint(vm, 1):
+        d = be_api.be_toint(vm, 1)
+        # clamp |d| to the live frame count. Comparing d against -count
+        # first lets us safely negate only values that fit, avoiding the
+        # -INT_MIN sign-flip undefined behavior in the C implementation.
+        # Python ints are unbounded, but we mirror the same semantic so an
+        # oversized depth does not index arbitrarily far out of the stack.
+        if d < -count or d > count:
+            depth = count
+        elif d < 0:
+            depth = -d
+        else:
+            depth = d
     cf_idx = count - 1 - depth
     if cf_idx >= 0:
         cf = be_vec.be_vector_at(vm.callstack, cf_idx)
@@ -1033,8 +1042,13 @@ def _register_module_table():
     # &be_native_module(undefined),  /* always registered */
     _register_native_module("undefined", _build_undefined_module_table())
 
-    # Note: preproc module not registered here — preprocessor is handled
-    # internally by the lexer.
+    # #if BE_USE_PREPROCESSOR
+    #     &be_native_module(preproc),
+    # #endif
+    from berry_port.berry_conf import BE_USE_PREPROCESSOR
+    if BE_USE_PREPROCESSOR:
+        from berry_port import be_preproclib as _be_preproclib
+        _register_native_module("preproc", _be_preproclib.be_preproc_module_table())
 
 
 # ============================================================================

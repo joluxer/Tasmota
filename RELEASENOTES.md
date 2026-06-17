@@ -36,9 +36,9 @@ While fallback or downgrading is common practice it was never supported due to S
 
 This release will be supported from ESP8266/Arduino library Core version **2.7.8** due to reported security and stability issues on previous Core version. This will also support gzipped binaries.
 
-This release will be supported from ESP32/Arduino library Core version **v3.1.11**.
+This release will be supported from ESP32/Arduino library Core version **v3.3.8**.
 
-Support of ESP8266 Core versions before 2.7.8 and ESP32 Core versions before v3.1.11 have been removed.
+Support of ESP8266 Core versions before 2.7.8 and ESP32 Core versions before v3.3.8 have been removed.
 
 ## Initial configuration tools
 
@@ -71,17 +71,20 @@ Latest released binaries can be downloaded from
 - http://ota.tasmota.com/tasmota/release
 
 Historical binaries can be downloaded from
-- http://ota.tasmota.com/tasmota/release-15.4.0
+- http://ota.tasmota.com/tasmota/release-15.5.0
 
 The latter links can be used for OTA upgrades too like ``OtaUrl http://ota.tasmota.com/tasmota/release/tasmota.bin.gz``
 
 ### ESP32, ESP32-C2, ESP32-C3, ESP32-C5, ESP32-C6, ESP32-P4, ESP32-S2 and ESP32-S3 based
-The following binary downloads have been compiled with ESP32/Arduino library core version **v3.1.11**.
+The following binary downloads have been compiled with ESP32/Arduino library core version **v3.3.8**.
 
 - **tasmota32.bin** = The Tasmota version with most drivers including additional sensors and KNX for 4M+ flash.  **RECOMMENDED RELEASE BINARY**
 - **tasmota32solo1.bin** = The Tasmota version with most drivers including additional sensors and KNX for single core ESP32 and 4M+ flash.
 - **tasmota32c2.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-C2 with serial and 4M+ flash.
 - **tasmota32c3.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-C3 with USB HWCDC and fallback to serial and 4M+ flash.
+- **tasmota32c5.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-C5 with USB HWCDC and fallback to serial and 4M+ flash.
+- **tasmota32c6.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-C6 with USB HWCDC and fallback to serial and 4M+ flash.
+- **tasmota32p4.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-P4 with USB HWCDC and fallback to serial and 4M+ flash.
 - **tasmota32s2.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-S2 with serial and 4M+ flash.
 - **tasmota32s2cdc.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-S2 with serial over embedded USB CDC only and 4M+ flash.
 - **tasmota32s3.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-S3 with USB HWCDC and fallback to serial and 4M+ flash.
@@ -94,18 +97,12 @@ The following binary downloads have been compiled with ESP32/Arduino library cor
 - **tasmota32-webcam.bin** = The Webcam version adds webcam support for 4M+ flash.
 - **tasmota32-zbbridgepro.bin** - The Sonoff Zigbee Bridge Pro version with CC2652P firmware load support.
 
-The following binary downloads have been compiled with ESP32/Arduino library core version **v3.3.8**.
-
-- **tasmota32c5.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-C5 with USB HWCDC and fallback to serial and 4M+ flash.
-- **tasmota32c6.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-C6 with USB HWCDC and fallback to serial and 4M+ flash.
-- **tasmota32p4.bin** = The Tasmota version with most drivers including additional sensors and KNX for ESP32-P4 with USB HWCDC and fallback to serial and 4M+ flash.
-
 Latest released binaries can be downloaded from
 - https://github.com/arendst/Tasmota-firmware/tree/firmware/release-firmware
 - https://ota.tasmota.com/tasmota32/release
 
 Historical binaries can be downloaded from
-- https://ota.tasmota.com/tasmota32/release-15.4.0
+- https://ota.tasmota.com/tasmota32/release-15.5.0
 
 The latter links can be used for OTA upgrades too like ``OtaUrl https://ota.tasmota.com/tasmota32/release/tasmota32.bin``
 
@@ -115,55 +112,49 @@ The latter links can be used for OTA upgrades too like ``OtaUrl https://ota.tasm
 
 [Complete list](BUILDS.md) of available feature and sensors.
 
-## Changelog v15.4.0 Sybil
+## Changelog v15.5.0 Sylvan
 ### Added
-- Support for JSON value pair `"ARCH"` in template being either ESP8266, ESP32, ESP32C2, ESP32C3, ESP32C5, ESP32C6, ESP32H2, ESP32H4, ESP32P4, ESP32S2 or ESP32S3
-- Support for Sensirion SCD42 and SCD43 CO2 sensor
-- Support for Sensirion STCC4 CO2 sensor
-- Shelly Pro EM-50 template {"NAME":"Shelly Pro EM-50","ARCH":"ESP32","GPIO":[0,0,224,0,3457,0,0,0,0,608,544,640,9472,0,5600,0,0,0,0,5568,0,0,0,0,0,0,0,0,5536,0,0,32,4736,0,0,0],"FLAG":0,"BASE":1,"CMND":"AdcGpio36 10000,10000,3350"} [#24604](https://github.com/arendst/Tasmota/issues/24604)
-- ESP8266 redesigned I2C Wire driver to support second I2C bus
-- Drivers PCA9685 and PCF8574 multi I2C bus support
-- Environment sensors CCS811, SCD30, SGP30 and SGP40 multi I2C bus support
-- Real Time Clocks BM8563, PCF85063 and PCF85363 multi I2C bus support
-- LCD multi I2C bus support
-- I2S full duplex, auto rx sample rate [#24469](https://github.com/arendst/Tasmota/issues/24469)
-- Sen5x power on delay of 60ms [#24452](https://github.com/arendst/Tasmota/issues/24452)
-- Berry solidification is now part of the build system [#24664](https://github.com/arendst/Tasmota/issues/24664)
-- Berry add `loglevel` to `mqtt.publish()` [#24551](https://github.com/arendst/Tasmota/issues/24551)
-
-### Breaking Changed
-- Renamed SCD40 sensors to their real names like SCD40 to SCD43
+- Build copy firmware artifacts with ELF-extracted build timestamp (opt-in) [#24794](https://github.com/arendst/Tasmota/issues/24794)
+- Command `SetOption [0..2]` to display SetOption values
+- Command `WcResolution 0..24` increasing camera max resolution from 14 to 24
+- Support for hostname generation using single-specifier Format() patterns [#24731](https://github.com/arendst/Tasmota/issues/24731)
+- Support for Modbus RX Enable GPIO [#24726](https://github.com/arendst/Tasmota/issues/24726)
+- Support for multi-byte chars like emojis (💡) in light device toggle buttons [#24482](https://github.com/arendst/Tasmota/issues/24482)
+- Support for M5Stack Atom S3R drivers [#24747](https://github.com/arendst/Tasmota/issues/24747)
+- Support for uDisplay ST7305 [#24738](https://github.com/arendst/Tasmota/issues/24738)
+- Support for Modbus Relays [#24812](https://github.com/arendst/Tasmota/issues/24812)
+- Support for hosted MCU other than esp32c6
+- Serial console support for Backspace when enabling `#define USE_SERIAL_BACKSPACE` [#24830](https://github.com/arendst/Tasmota/issues/24830)
+- Trigger events to Berry when `USE_RULES` is not enabled [#24796](https://github.com/arendst/Tasmota/issues/24796)
+- MiElHVAC extend support of AirDirection control [#24675](https://github.com/arendst/Tasmota/issues/24675)
+- ESP32 VID6608 hardware RMT support for Automotive gauge driver [#24759](https://github.com/arendst/Tasmota/issues/24759)
+- Berry add support for pre-processor [#24679](https://github.com/arendst/Tasmota/issues/24679)
+- Berry transpose C defines to Berry in `tasmota_defines_for_berry.be` [#24680](https://github.com/arendst/Tasmota/issues/24680)
+- Berry RGBW white blend and 10-bit gamma support to Berry LED pixel rendering [#24750](https://github.com/arendst/Tasmota/issues/24750)
+- Berry manual tool to compare and verify solidification between C and Python [#24754](https://github.com/arendst/Tasmota/issues/24754)
 
 ### Changed
-- ESP8266 platform update from 2026.02.00 to 2026.04.00 [#24635](https://github.com/arendst/Tasmota/issues/24635)
-- ESP32 Platform from 2025.02.30 to 2026.04.30, Framework (Arduino Core) from v3.1.9 to v3.1.11 and IDF from v5.3.4.251226 to v5.3.4.260127 [#24635](https://github.com/arendst/Tasmota/issues/24635)
-- ESP32-C5/C6/P4 Platform from 2025.03.30 to 2026.04.50, Framework (Arduino Core) from v3.1.10 to v3.3.8 and IDF from v5.3.4.260127 to v5.5.4.260407  [#24635](https://github.com/arendst/Tasmota/issues/24635)
-- Adafruit_BusIO library from v1.11.0 to v1.17.4
-- Adafruit_CCS811 library from v1.0.0.14 to v1.1.3
-- Adafruit SGP30 library from v1.2.0 to v2.0.3
-- Adafruit SGP40 library from v1.1.0 to v1.1.4
-- Sensirion Core library from v0.6.0 to v0.7.2
-- LVGL library from v9.4.0 to v9.5.0 [#24470](https://github.com/arendst/Tasmota/issues/24470)
-- SHT1x software reset I2C bus after initial (un)detection
-- NeoPool always output valid sensitive data [#24573](https://github.com/arendst/Tasmota/issues/24573)
-- SML suppress MQTT publish until valid meter data received [#24587](https://github.com/arendst/Tasmota/issues/24587)
-- Berry faster compilation [#24656](https://github.com/arendst/Tasmota/issues/24656)
-- Matter improved parameters handling [#24471](https://github.com/arendst/Tasmota/issues/24471)
+- ESP32 Platform from 2025.04.30 to 2026.05.50, Framework (Arduino Core) from v3.1.11 to v3.3.8.260506 and IDF from v5.3.4.260127 to v5.5.4.260407 [#24718](https://github.com/arendst/Tasmota/issues/24718)
+- Sensirion_Core library from v0.7.2 to arduino-core v0.7.3
+- SCD30 library FrogmoreScd30 to Sensirion arduino-i2c-scd30 v1.1.1
+- SCD4x library FrogmoreScd40 to Sensirion arduino-i2c-scd4x v1.1.0
+- SPS30 library Sensirion arduino-i2c-sps30 v1.0.1
+- Code hardening replacing `strcat` and `strcpy` with safer alternatives [#24832](https://github.com/arendst/Tasmota/issues/24832)
+- Increase security by inverting state of `define DISABLE_REFERER_CHK` controlling remote HTTP access which is now default off
+- ESP8266 wrap printf and replace with stubs reducing flash size by 6k [#24714](https://github.com/arendst/Tasmota/issues/24714)
+- Move autoconf repository to `ota.tasmota.com` [#24754](https://github.com/arendst/Tasmota/issues/24754)
+- Berry optimized solidified structures for code constants and maps [#24838](https://github.com/arendst/Tasmota/issues/24838)
+- Berry `format()` now uses internal `ext_snprintf_P()` for floating point formatting [#24725](https://github.com/arendst/Tasmota/issues/24725)
+- LVGL splash screen uses default Montserrat-14 instead of Montserrat-20 on small screens [#24735](https://github.com/arendst/Tasmota/issues/24735)
 
 ### Fixed
-- ESP8266 heap drain and exception 29 when DHCP provides NTP server [#24515](https://github.com/arendst/Tasmota/issues/24515), [#24566](https://github.com/arendst/Tasmota/issues/24566)
-- Crash when shutting down Wifi with `Wifi 0` [#24536](https://github.com/arendst/Tasmota/issues/24536)
-- Don't send extraneous `0\r\n\r\n` with non-chunked HTTP/1.0 [#24518](https://github.com/arendst/Tasmota/issues/24518)
-- Shelly Dimmer 2 serial timeout regression from v15.2.0.1 [#24560](https://github.com/arendst/Tasmota/issues/24560)
-- NeoPool possible IntegerDivideByZero [#24578](https://github.com/arendst/Tasmota/issues/24578)
-- Mitsubishi Electric HVAC memory leak and other issues for MiElHVAC [#24660](https://github.com/arendst/Tasmota/issues/24660)
-- File upload improvements: `/ufsu` api mode, no interrupts disabling, cleaner confirmation page [#24521](https://github.com/arendst/Tasmota/issues/24521)
-- Do not free BT memory when in use [#24480](https://github.com/arendst/Tasmota/issues/24480)
-- I2S mkv muxing for files [#24666](https://github.com/arendst/Tasmota/issues/24666)
-- Berry avoid `tasmota.wifi()` returning bad values when wifi is turned off [#24505](https://github.com/arendst/Tasmota/issues/24505)
-- Berry crash when comparing for equality float literals on ESP32 [#24610](https://github.com/arendst/Tasmota/issues/24610)
+- Crash when MQTT-TLS when tcp connection failed [#24798](https://github.com/arendst/Tasmota/issues/24798)
+- SPS30 not detected on ESP8266 [#24780](https://github.com/arendst/Tasmota/issues/24780)
+- I80 pushColors swap logic for parallel displays [#24766](https://github.com/arendst/Tasmota/issues/24766)
+- MiElHVAC sensor and settings out of sync [#24813](https://github.com/arendst/Tasmota/issues/24813)
+- NeoPool possible overflow/div-zero errors and Hydrolysis module detection [#24724](https://github.com/arendst/Tasmota/issues/24724)
+- Seesaw encoder position tracking in light control mode [#24730](https://github.com/arendst/Tasmota/issues/24730)
+- Berry `write(value:int | s:string) -> nil` internal argument parsing [#24800](https://github.com/arendst/Tasmota/issues/24800)
 
 ### Removed
-- ESP8266 I2C Slave support which was never used by Tasmota anyway
-- Berry `tasmota.urlbecload()` superseded by Extension Manager [#24493](https://github.com/arendst/Tasmota/issues/24493)
-- Berry remove `mdns.stop()` [#24549](https://github.com/arendst/Tasmota/issues/24549)
+- `USE_UNIVERSAL_TOUCH` no more forced when `USE_UNIVERSAL_DISPLAY` is enabled [#24743](https://github.com/arendst/Tasmota/issues/24743)
